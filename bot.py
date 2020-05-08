@@ -148,4 +148,4 @@ async def corona(ctx):
         await ctx.send(f"'{sub_command}'")
 
 
-client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSDw.SVkCCHRQ6UjyrKU5luKE6KK4EQk')
+client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
