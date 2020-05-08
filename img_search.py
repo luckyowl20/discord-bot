@@ -32,7 +32,7 @@ import os
 api_keys_path = "api_keys.json"
 max_requests = 475
 
-prev_searches = os.listdir(os.getcwd() + "/past_searches")
+prev_searches = os.listdir("past_searches")
 for i in range(len(prev_searches)):
     prev_searches[i] = prev_searches[i]
 print(f"database entries: {prev_searches}\n")
@@ -99,13 +99,13 @@ def get_image(query: str, start=0, num_results=1, modifier=""):
         update_key(key, raw_keys)
         print(f"query result: {data}")
 
-        with open(f"{os.getcwd()}/past_searches/{query}_{modifier}.json", "w") as f:
+        with open(f"past_searches/{query}_{modifier}.json", "w") as f:
             json.dump(data, f)
 
         image_urls = assign_data(data, start, num_results)
 
     elif total_accesses < max_requests:
-        with open(f"{os.getcwd()}/past_searches/{query}_{modifier}.json", "r") as f:
+        with open(f"past_searches/{query}_{modifier}.json", "r") as f:
             print("LOADED FROM DATABASE")
             data = json.load(f)
 
@@ -119,5 +119,6 @@ def get_image(query: str, start=0, num_results=1, modifier=""):
     return image_urls, start, error
 
 
+# printing keys when initialized
 print(get_key_info(api_keys_path)[0])
 print()
