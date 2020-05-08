@@ -23,8 +23,8 @@ state: Kansas
 zip: 66438
 api key: 7e47661d9410ba09b21acf3509cd4bec
 """
-from operator import itemgetter
 
+from operator import itemgetter
 import requests
 import json
 import os
