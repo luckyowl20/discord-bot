@@ -147,4 +147,5 @@ async def corona(ctx):
         await ctx.send("That command is not part of the corona command set, type '.corona help' for help")
         await ctx.send(f"'{sub_command}'")
 
-client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrCBnA.dit1xUu03yoryfC-4wQV1u3qm1I')
+
+client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSDw.SVkCCHRQ6UjyrKU5luKE6KK4EQk')
