@@ -28,7 +28,7 @@ async def update_price_status():
     # colorado 17
     while not client.is_closed():
         await client.change_presence(activity=discord.Game(f"CO gas = ${prices[17][1]}"))
-        await asyncio.sleep(300)
+        await asyncio.sleep(45)
 
 
 # client decorator after client name above
