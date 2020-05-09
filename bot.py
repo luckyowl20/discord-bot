@@ -210,8 +210,8 @@ async def cool(ctx):
 @client.command()
 async def delmsg(ctx, amount: int = 0):
     """Deletes a number of messages, for use by authorized users only"""
-    # LuckyOwl,
-    auth_users = [270372728614289409]
+    # LuckyOwl, Supergoat, Jaws
+    auth_users = [270372728614289409, 275454678853222401, 341787743690686465]
 
     if ctx.message.author.id in auth_users:
         await ctx.channel.purge(limit=amount + 1)
@@ -219,7 +219,7 @@ async def delmsg(ctx, amount: int = 0):
 
 @client.command()
 async def ustats(ctx):
-    await ctx.send(f"{ctx.message.author}")
+    await ctx.send(f"{ctx.message.author, 1}")
 
 
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
