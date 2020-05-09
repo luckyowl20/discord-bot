@@ -227,4 +227,5 @@ async def ustats(ctx):
 async def psearches(ctx):
     await ctx.send(f"Past searches: {os.listdir('past_searches')}")
 
+
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
