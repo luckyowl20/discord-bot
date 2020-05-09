@@ -15,6 +15,14 @@ async def on_ready():
     print('Bot is ready!')
 
 
+@client.event
+async def on_message(message):
+    if message.content == "That's cool 😎":
+        await message.add_reaction("😎")
+
+    await client.process_commands(message)
+
+
 # name the function what you want the command to be
 @client.command()
 async def ping(ctx):
@@ -178,6 +186,40 @@ async def pog(ctx):
     else:
         print(ctx.message.author.name)
         await ctx.send(f"{ctx.message.author.mention} {client.emojis[(names.index('PogU'))]}")
+
+
+@client.command()
+async def hate(ctx, user):
+    """Send hatemail to someone, make sure to mention them with @(username)"""
+    await ctx.channel.purge(limit=1)
+    await ctx.send(f"{user} I hate you")
+
+
+@client.command()
+async def fart(ctx):
+    image, start, error = su.get_image("person farting", random.randint(0, 85), 1)
+    await ctx.send(image[0])
+
+
+@client.command()
+async def cool(ctx):
+    await ctx.channel.purge(limit=1)
+    await ctx.send("That's cool 😎")
+
+
+@client.command()
+async def delmsg(ctx, amount: int = 0):
+    """Deletes a number of messages, for use by authorized users only"""
+    # LuckyOwl,
+    auth_users = [270372728614289409]
+
+    if ctx.message.author.id in auth_users:
+        await ctx.channel.purge(limit=amount + 1)
+
+
+@client.command()
+async def ustats(ctx):
+    await ctx.send(f"{ctx.message.author}")
 
 
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
