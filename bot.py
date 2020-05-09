@@ -27,7 +27,7 @@ async def update_price_status():
 
     # colorado 17
     while not client.is_closed():
-        await client.change_presence(activity=discord.Game(f"CO gas = ${prices[17][1]}"))
+        await client.change_presence(activity=discord.Game(f"CO gas is ${prices[17][1]}"))
         await asyncio.sleep(45)
 
 
@@ -269,4 +269,4 @@ async def gas(ctx, state: str = "colorado"):
 
 client.loop.create_task(save_gas_prices())
 client.loop.create_task(update_price_status())
-client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
+client.run('YOUR KEY')
