@@ -269,4 +269,4 @@ async def gas(ctx, state: str = "colorado"):
 
 client.loop.create_task(save_gas_prices())
 client.loop.create_task(update_price_status())
-client.run('YOUR KEY')
+client.run('NzA2OTcyNDExOTYyMzI3MTIw.XraqnQ.hd_a6z1h_5gR0ngB_O3xonANWlk')
