@@ -148,4 +148,8 @@ async def corona(ctx):
         await ctx.send(f"'{sub_command}'")
 
 
+@client.command()
+async def pogU(ctx):
+    await ctx.send("Yo @LuckyOwl#5641 :PogU:")
+
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
