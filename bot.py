@@ -18,6 +18,7 @@ async def on_ready():
 # name the function what you want the command to be
 @client.command()
 async def ping(ctx):
+    """Shows latency"""
     await ctx.send(f'Pong {round(client.latency * 1000)}ms')
 
 
@@ -29,7 +30,7 @@ async def fruit(ctx, query: str = "fruit", num_results: int = 1):
     :param ctx: context, required by discord api
     :param query: what the user wants to search related to fruit
     :param num_results: how many results the user wants to display, max 5
-    :return: None
+    :return: your image (None)
     """
     print(f"\nfruit called: {query}, prev_searches: {su.prev_searches}")
 
@@ -57,7 +58,14 @@ async def fruit(ctx, query: str = "fruit", num_results: int = 1):
 
 @client.command()
 async def google(ctx, start_number: int = 0, *args):
+    """
+    Googles the specified image, the number corresponds to which image is returned
 
+    :param ctx: context, required by discord api
+    :param start_number: which image you want
+    :param args: your search
+    :return: your image (None)
+    """
     search = ""
     for arg in args:
         search += arg + " "
@@ -89,6 +97,7 @@ async def google(ctx, start_number: int = 0, *args):
 
 @client.command()
 async def apinfo(ctx):
+    """Gives information regarding the number of Google Images API requests to monitor usage"""
     key_info = su.get_key_info(su.api_keys_path)
     key_requests = ""
     for key in key_info[0]:
@@ -99,6 +108,12 @@ async def apinfo(ctx):
 
 @client.command()
 async def corona(ctx):
+    """
+    A list of commands regarding coronavirus type .corona help for more information
+
+    :param ctx: context, required by discord api
+    :return: An image/text (None)
+    """
     sub_command = ctx.message.content.lstrip(".corona ")
     ana.download_data()
 
@@ -149,7 +164,20 @@ async def corona(ctx):
 
 
 @client.command()
-async def pogU(ctx):
-    await ctx.send("Yo @LuckyOwl#5641 :PogU:")
+async def pog(ctx):
+    """Sends a PogU emote to the sender, special message for special users"""
+    names = []
+    for emoji in client.emojis:
+        names.append(emoji.name)
+
+    special_users = ["LuckyOwl"]
+
+    if ctx.message.author.name in special_users:
+        await ctx.send(f"{ctx.message.author.mention} {client.emojis[(names.index('PogU'))]} very cool")
+
+    else:
+        print(ctx.message.author.name)
+        await ctx.send(f"{ctx.message.author.mention} {client.emojis[(names.index('PogU'))]}")
+
 
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
