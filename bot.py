@@ -3,6 +3,7 @@ from discord.ext import commands
 import img_search as su
 import random
 from corona import analysis as ana
+import os
 
 client = commands.Bot(command_prefix='.')
 
@@ -221,5 +222,9 @@ async def delmsg(ctx, amount: int = 0):
 async def ustats(ctx):
     await ctx.send(f"{ctx.message.author, 1}")
 
+
+@client.command()
+async def psearches(ctx):
+    await ctx.send(f"Past searches: {os.listdir('past_searches')}")
 
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
