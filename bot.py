@@ -1,13 +1,34 @@
 import discord
 from discord.ext import commands
 import img_search as su
+import gas_prices.gas_prices as gp
 import random
 from corona import analysis as ana
-import os
+import os, time
+import asyncio
 
 client = commands.Bot(command_prefix='.')
 
-DRIVER_PATH = 'chromedriver.exe'
+
+async def save_gas_prices():
+    await client.wait_until_ready()
+    prices = gp.gas_prices()
+
+    # colorado 17
+    while not client.is_closed():
+        gp.save_prices(prices)
+        await client.change_presence(activity=discord.Game(f"CO gas = ${prices[17][1]}"))
+        await asyncio.sleep(3610)
+
+
+async def update_price_status():
+    await client.wait_until_ready()
+    prices = gp.gas_prices()
+
+    # colorado 17
+    while not client.is_closed():
+        await client.change_presence(activity=discord.Game(f"CO gas = ${prices[17][1]}"))
+        await asyncio.sleep(300)
 
 
 # client decorator after client name above
@@ -228,4 +249,24 @@ async def psearches(ctx):
     await ctx.send(f"Past searches: {os.listdir('past_searches')}")
 
 
+@client.command()
+async def gas(ctx, state: str = "colorado"):
+    prices_tuple = gp.gas_prices()
+    states, prices = [], []
+    for price in prices_tuple[1:]:
+        states.append(price[0])
+        prices.append(price[1])
+
+    if state.lower() == "average":
+        total = 0.0
+        for price in prices:
+            total += price
+        total /= len(prices)
+        await ctx.send(f"The average price of gas is **${round(total, 3)}** as of **{time.asctime()}**")
+    else:
+        await ctx.send(f"The gas price in **{state}** is **${prices[states.index(state.lower())]}** as of **{time.asctime()}**")
+
+
+client.loop.create_task(save_gas_prices())
+client.loop.create_task(update_price_status())
 client.run('NzA2OTcyNDExOTYyMzI3MTIw.XrVSmQ.SeoXspn-iZssuB3d3kCbEZHnEPo')
